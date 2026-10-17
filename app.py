@@ -1,3 +1,5 @@
+import os
+
 os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 os.environ["OMP_NUM_THREADS"] = "1"
 os.environ["TF_NUM_INTRAOP_THREADS"] = "1"
@@ -23,7 +25,7 @@ from flask import (
     flash
 )
 
-import os
+#import os
 import time
 import uuid
 import sqlite3
