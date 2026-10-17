@@ -1,3 +1,7 @@
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+os.environ["OMP_NUM_THREADS"] = "1"
+os.environ["TF_NUM_INTRAOP_THREADS"] = "1"
+os.environ["TF_NUM_INTEROP_THREADS"] = "1"
 from utils.combined_analysis import combine_analysis
 import json
 from dotenv import load_dotenv
