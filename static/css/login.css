@@ -1,0 +1,215 @@
+/* =========================================================
+   DERMACARE AI - LOGIN PAGE
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", Arial, sans-serif;
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #eef5ff;
+}
+
+
+/* =========================================================
+   LOGIN CONTAINER
+========================================================= */
+
+.login-container {
+    width: 100%;
+    max-width: 420px;
+
+    padding: 40px;
+
+    background: #ffffff;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 10px 35px
+        rgba(21, 101, 192, 0.12);
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.login-container h1 {
+    margin-bottom: 30px;
+
+    color: #1565c0;
+
+    font-size: 30px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.login-container form {
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+
+/* =========================================================
+   INPUT BOXES
+========================================================= */
+
+.login-container input {
+    width: 100%;
+
+    height: 52px;
+
+    padding: 0 16px;
+
+    border: 2px solid #dbe7f3;
+
+    border-radius: 10px;
+
+    background: #f8fbff;
+
+    color: #1f2937;
+
+    font-family: "Poppins", Arial, sans-serif;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition: all 0.3s ease;
+}
+
+
+.login-container input::placeholder {
+    color: #9ca3af;
+}
+
+
+.login-container input:focus {
+    border-color: #1565c0;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(21, 101, 192, 0.10);
+}
+
+
+/* =========================================================
+   LOGIN BUTTON
+========================================================= */
+
+.login-btn {
+    width: 100%;
+
+    height: 52px;
+
+    margin-top: 5px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1565c0,
+            #1976d2
+        );
+
+    color: #ffffff;
+
+    font-family: "Poppins", Arial, sans-serif;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+}
+
+
+.login-btn:hover {
+    background:
+        linear-gradient(
+            135deg,
+            #0d47a1,
+            #1565c0
+        );
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px
+        rgba(21, 101, 192, 0.25);
+}
+
+
+/* =========================================================
+   REGISTER LINK
+========================================================= */
+
+.register-link {
+    margin-top: 25px;
+
+    color: #6b7280;
+
+    font-size: 14px;
+}
+
+
+.register-link a {
+    color: #1565c0;
+
+    font-weight: 600;
+
+    text-decoration: none;
+}
+
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 500px) {
+
+    .login-container {
+        width: calc(100% - 30px);
+
+        padding: 30px 20px;
+    }
+
+    .login-container h1 {
+        font-size: 26px;
+    }
+
+}

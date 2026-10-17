@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Register - DermaCare AI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/register.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="register-container">
+
+        <h1>📝 Register</h1>
+
+        <form method="POST">
+
+            <!-- Full Name -->
+            <input
+                type="text"
+                name="fullname"
+                placeholder="Enter your full name"
+                required
+            >
+
+            <!-- Email -->
+            <input
+                type="email"
+                name="email"
+                placeholder="Enter your email"
+                required
+            >
+
+            <!-- Mobile Number -->
+            <input
+                type="text"
+                name="mobile"
+                placeholder="Enter your mobile number"
+                required
+            >
+
+            <!-- Password -->
+            <input
+                type="password"
+                name="password"
+                placeholder="Create your password"
+                required
+            >
+
+            <!-- Confirm Password -->
+            <input
+                type="password"
+                name="confirm_password"
+                placeholder="Confirm your password"
+                required
+            >
+
+            <!-- Register Button -->
+            <button
+                type="submit"
+                class="register-btn"
+            >
+                Register
+            </button>
+
+        </form>
+
+        <div class="login-link">
+            Already have an account?
+
+            <a href="/login">
+                Login
+            </a>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,515 @@
+/* ============================================================
+   DERMACARE AI - PREDICTION HISTORY
+   ============================================================ */
+
+/* =========================
+   GOOGLE FONT
+   ========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =========================
+   BODY
+   ========================= */
+
+body {
+    font-family: "Poppins", sans-serif;
+    background: #eef5ff;
+    color: #1f2937;
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+
+/* =========================
+   MAIN CONTAINER
+   ========================= */
+
+.container {
+    width: 95%;
+    max-width: 1250px;
+    margin: auto;
+    background: #ffffff;
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================
+   HEADING
+   ========================= */
+
+.container h1 {
+    text-align: center;
+    color: #1565c0;
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+
+.container > p {
+    text-align: center;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+
+.container > p b {
+    color: #1565c0;
+}
+
+
+/* =========================
+   SEARCH FORM
+   ========================= */
+
+.search-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+
+.search-form input {
+    width: 300px;
+    padding: 12px 16px;
+    border: 2px solid #dbe5f1;
+    border-radius: 10px;
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: 0.3s;
+}
+
+
+.search-form input:focus {
+    border-color: #1565c0;
+    box-shadow: 0 0 0 3px rgba(21, 101, 192, 0.12);
+}
+
+
+.search-form button {
+    padding: 12px 20px;
+    background: #1565c0;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+
+.search-form button:hover {
+    background: #0d47a1;
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   CLEAR SEARCH
+   ========================= */
+
+.search-form a {
+    text-decoration: none;
+    color: #d32f2f;
+    font-weight: 500;
+    padding: 10px;
+}
+
+
+.search-form a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================
+   TABLE WRAPPER
+   ========================= */
+
+.container {
+    overflow-x: auto;
+}
+
+
+/* =========================
+   HISTORY TABLE
+   ========================= */
+
+table {
+    width: 100%;
+    min-width: 850px;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 20px;
+    overflow: hidden;
+    border: 1px solid #e1e8f0;
+    border-radius: 14px;
+}
+
+
+/* =========================
+   TABLE HEADER
+   ========================= */
+
+thead {
+    background: #1565c0;
+    color: white;
+}
+
+
+th {
+    padding: 16px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+}
+
+
+/* =========================
+   TABLE BODY
+   ========================= */
+
+td {
+    padding: 15px 12px;
+    text-align: center;
+    border-bottom: 1px solid #edf1f5;
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+
+tbody tr {
+    background: #ffffff;
+    transition: 0.3s;
+}
+
+
+tbody tr:hover {
+    background: #f5f9ff;
+    transform: scale(1.002);
+}
+
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* =========================
+   PREDICTION IMAGE
+   ========================= */
+
+td img {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 3px solid #e3edf9;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: 0.3s;
+}
+
+
+td img:hover {
+    transform: scale(1.08);
+    border-color: #1565c0;
+}
+
+
+/* =========================
+   DISEASE NAME
+   ========================= */
+
+td b {
+    color: #1565c0;
+    font-size: 15px;
+}
+
+
+/* =========================
+   PDF DOWNLOAD BUTTON
+   ========================= */
+
+td a {
+    display: inline-block;
+    text-decoration: none;
+    color: #1565c0;
+    font-weight: 500;
+}
+
+
+td a:hover {
+    color: #0d47a1;
+    text-decoration: underline;
+}
+
+
+/* =========================
+   DELETE BUTTON
+   ========================= */
+
+.delete-btn {
+    background: #e53935;
+    color: white;
+    border: none;
+    padding: 9px 15px;
+    border-radius: 8px;
+    font-family: "Poppins", sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+
+.delete-btn:hover {
+    background: #b71c1c;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(229, 57, 53, 0.25);
+}
+
+
+/* =========================
+   NO HISTORY
+   ========================= */
+
+.no-history {
+    text-align: center;
+    padding: 60px 20px;
+    background: #f8fbff;
+    border: 2px dashed #c9d9eb;
+    border-radius: 15px;
+    margin-top: 25px;
+}
+
+
+.no-history h2 {
+    color: #1565c0;
+    margin-bottom: 10px;
+}
+
+
+.no-history p {
+    color: #666;
+}
+
+
+/* =========================
+   BACK DASHBOARD BUTTON
+   ========================= */
+
+.container > a:last-child {
+    display: block;
+    text-align: center;
+    margin-top: 30px;
+}
+
+
+.container > a:last-child button {
+    padding: 12px 25px;
+    background: #1565c0;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+
+.container > a:last-child button:hover {
+    background: #0d47a1;
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   MOBILE RESPONSIVE
+   ========================= */
+
+@media (max-width: 768px) {
+
+    body {
+        padding: 20px 10px;
+    }
+
+    .container {
+        width: 100%;
+        padding: 20px 12px;
+        border-radius: 15px;
+    }
+
+    .container h1 {
+        font-size: 25px;
+    }
+
+    .search-form {
+        flex-direction: column;
+    }
+
+    .search-form input {
+        width: 100%;
+    }
+
+    .search-form button {
+        width: 100%;
+    }
+
+    .search-form a {
+        text-align: center;
+    }
+
+    table {
+        min-width: 750px;
+    }
+}
+
+
+/* =========================
+   SMALL MOBILE
+   ========================= */
+
+@media (max-width: 480px) {
+
+    .container h1 {
+        font-size: 22px;
+    }
+
+    .container {
+        padding: 18px 10px;
+    }
+
+    td {
+        padding: 10px 8px;
+    }
+
+    th {
+        padding: 12px 8px;
+    }
+
+}
+
+/* ============================================================
+   STEP 8.5 - DISEASE STATUS BADGES
+   ============================================================ */
+
+.disease-badge {
+    display: inline-block;
+    padding: 7px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+
+/* Healthy */
+
+.disease-badge.healthy {
+    background: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #a5d6a7;
+}
+
+
+/* Acne */
+
+.disease-badge.acne {
+    background: #fff3e0;
+    color: #ef6c00;
+    border: 1px solid #ffcc80;
+}
+
+
+/* Eczema */
+
+.disease-badge.eczema {
+    background: #fffde7;
+    color: #f9a825;
+    border: 1px solid #fff176;
+}
+
+
+/* Psoriasis */
+
+.disease-badge.psoriasis {
+    background: #f3e5f5;
+    color: #8e24aa;
+    border: 1px solid #ce93d8;
+}
+
+
+/* Melanoma */
+
+.disease-badge.melanoma {
+    background: #ffebee;
+    color: #c62828;
+    border: 1px solid #ef9a9a;
+}
+
+
+/* Ringworm */
+
+.disease-badge.ringworm {
+    background: #efebe9;
+    color: #5d4037;
+    border: 1px solid #bcaaa4;
+}
+
+
+/* ============================================================
+   CONFIDENCE PROGRESS BAR
+   ============================================================ */
+
+.confidence-container {
+    width: 140px;
+    margin: auto;
+}
+
+
+.confidence-text {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1565c0;
+    margin-bottom: 6px;
+}
+
+
+.confidence-bar {
+    width: 100%;
+    height: 8px;
+    background: #e3eaf2;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+
+.confidence-fill {
+    height: 100%;
+    background: #1565c0;
+    border-radius: 10px;
+    transition: width 0.5s ease;
+}
+
+
+/* ============================================================
+   CONFIDENCE HOVER
+   ============================================================ */
+
+.confidence-container:hover .confidence-fill {
+    background: #0d47a1;
+}

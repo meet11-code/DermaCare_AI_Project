@@ -1,0 +1,4 @@
+0 -> Bacterial_dermatosis
+1 -> Fungal_infections
+2 -> Healthy
+3 -> Hypersensitivity_allergic_dermatosis

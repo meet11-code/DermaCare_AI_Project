@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DermaCare AI</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+
+<body>
+
+
+<!-- ================= SIDEBAR ================= -->
+
+<div id="sidebar" class="sidebar">
+
+    <button id="close-btn">
+        <i class="fa-solid fa-xmark"></i>
+    </button>
+
+    <div class="profile">
+
+        <div class="profile-icon">
+            <i class="fa-solid fa-user"></i>
+        </div>
+
+        <h3>Guest User</h3>
+
+        <p>AI Healthcare System</p>
+
+    </div>
+
+
+    <a href="#">
+        <i class="fa-solid fa-house"></i>
+        Home
+    </a>
+
+    <a href="{{ url_for('login', type='human') }}">
+        <i class="fa-solid fa-user-doctor"></i>
+        Human Skin Care
+    </a>
+
+    <a href="#">
+        <i class="fa-solid fa-dog"></i>
+        Animal Skin Care
+        <span style="font-size: 11px; margin-left: auto; opacity: 0.8;">
+            Coming Soon
+        </span>
+    </a>
+
+    <a href="#">
+        <i class="fa-solid fa-bandage"></i>
+        Wound Detection
+        <span style="font-size: 11px; margin-left: auto; opacity: 0.8;">
+            Coming Soon
+        </span>
+    </a>
+
+    <a href="#">
+        <i class="fa-solid fa-chart-line"></i>
+        Dashboard
+    </a>
+
+    <a href="#">
+        <i class="fa-solid fa-clock-rotate-left"></i>
+        History
+    </a>
+
+    <a href="#">
+        <i class="fa-solid fa-file-lines"></i>
+        Reports
+    </a>
+
+    <a href="#">
+        <i class="fa-solid fa-gear"></i>
+        Settings
+    </a>
+
+    <a href="#">
+        <i class="fa-solid fa-phone"></i>
+        Contact
+    </a>
+
+    <a href="#">
+        <i class="fa-solid fa-circle-info"></i>
+        About
+    </a>
+
+    <a href="#">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        Logout
+    </a>
+
+</div>
+
+
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <div class="logo-section">
+
+        <button id="menu-btn">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <h2>🩺 DermaCare AI</h2>
+
+    </div>
+
+
+    <div class="search-box">
+
+        <input
+            type="text"
+            placeholder="Search Human Skin Disease">
+
+        <button>
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+
+    </div>
+
+
+    <div class="nav-buttons">
+
+        <a href="/login">
+            <button class="login-btn">
+                Login
+            </button>
+        </a>
+
+        <a href="/register">
+            <button type="button" class="register-btn">
+                Register
+            </button>
+        </a>
+
+    </div>
+
+</nav>
+
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+
+    <div class="hero-left">
+
+        <img
+            src="{{ url_for('static', filename='images/doctor.png') }}"
+            alt="Doctor">
+
+    </div>
+
+
+
+    <div class="hero-center">
+
+        <h1>
+
+            Welcome To
+
+            <br>
+
+            <span>DermaCare AI</span>
+
+        </h1>
+
+
+        <p>
+
+            AI Powered Human Skin Disease
+            Detection and Healthcare Assistance System
+
+        </p>
+
+
+
+        <div class="hero-buttons">
+
+    <!-- HUMAN SKIN CARE -->
+    <a href="{{ url_for('login', type='human') }}" class="hero-btn human-btn">
+        <i class="fa-solid fa-user-doctor"></i>
+
+        <span class="btn-content">
+            <strong>Human Skin Care</strong>
+            <small>AI Skin Disease Detection</small>
+        </span>
+
+        <i class="fa-solid fa-arrow-right btn-arrow"></i>
+    </a>
+
+
+    <!-- ANIMAL SKIN CARE -->
+    <div class="hero-btn animal-btn coming-soon-btn"
+         onclick="showComingSoon(event, 'Animal Skin Care')">
+
+        <i class="fa-solid fa-dog"></i>
+
+        <span class="btn-content">
+            <strong>Animal Skin Care</strong>
+            <small>Coming Soon</small>
+        </span>
+
+        <i class="fa-solid fa-clock btn-arrow"></i>
+    </div>
+
+
+    <!-- WOUND DETECTION -->
+    <div class="hero-btn wound-btn coming-soon-btn"
+         onclick="showComingSoon(event, 'Wound Detection')">
+
+        <i class="fa-solid fa-bandage"></i>
+
+        <span class="btn-content">
+            <strong>Wound Detection</strong>
+            <small>Coming Soon</small>
+        </span>
+
+        <i class="fa-solid fa-clock btn-arrow"></i>
+    </div>
+
+</div>
+
+    </div>
+
+
+
+    <div class="hero-right">
+
+        <img
+            src="{{ url_for('static', filename='images/doctor_dog.png') }}"
+            alt="Doctor Dog">
+
+    </div>
+
+
+</section>
+
+
+
+<!-- ================= FEATURES ================= -->
+
+<section class="features">
+
+
+    <h2>
+        Why Choose DermaCare AI?
+    </h2>
+
+
+    <p class="feature-subtitle">
+
+        AI Powered Healthcare Platform for Human Skin Disease Detection
+
+    </p>
+
+
+
+    <div class="feature-grid">
+
+
+        <div class="feature-card">
+
+            <i class="fa-solid fa-camera"></i>
+
+            <h3>
+                Image Upload
+            </h3>
+
+            <p>
+                Upload human skin images for AI analysis.
+            </p>
+
+        </div>
+
+
+
+        <div class="feature-card">
+
+            <i class="fa-solid fa-brain"></i>
+
+            <h3>
+                AI Detection
+            </h3>
+
+            <p>
+                Predict common skin diseases with AI and confidence score.
+            </p>
+
+        </div>
+
+
+
+        <div class="feature-card">
+
+            <i class="fa-solid fa-pills"></i>
+
+            <h3>
+                Medicine
+            </h3>
+
+            <p>
+                Get general medicine suggestions based on prediction.
+            </p>
+
+        </div>
+
+
+
+        <div class="feature-card">
+
+            <i class="fa-solid fa-leaf"></i>
+
+            <h3>
+                Home Remedies
+            </h3>
+
+            <p>
+                Get general home-care suggestions for minor skin problems.
+            </p>
+
+        </div>
+
+
+
+        <div class="feature-card">
+
+            <i class="fa-solid fa-file-pdf"></i>
+
+            <h3>
+                PDF Report
+            </h3>
+
+            <p>
+                Download complete AI analysis report.
+            </p>
+
+        </div>
+
+
+
+        <div class="feature-card">
+
+            <i class="fa-solid fa-clock-rotate-left"></i>
+
+            <h3>
+                History
+            </h3>
+
+            <p>
+                View your previous prediction reports.
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- ================= STATISTICS ================= -->
+
+<section class="stats">
+
+
+    <h2>
+        Our Impact
+    </h2>
+
+
+    <p class="stats-subtitle">
+
+        Human Skin Care AI Platform
+
+    </p>
+
+
+
+    <div class="stats-container">
+
+
+        <div class="stat-box">
+
+            <i class="fa-solid fa-user-doctor"></i>
+
+            <h1>
+                6
+            </h1>
+
+            <p>
+                Human Skin Classes
+            </p>
+
+        </div>
+
+
+
+        <div class="stat-box">
+
+            <i class="fa-solid fa-brain"></i>
+
+            <h1>
+                87.79%
+            </h1>
+
+            <p>
+                Human AI Accuracy
+            </p>
+
+        </div>
+
+
+
+        <div class="stat-box">
+
+            <i class="fa-solid fa-image"></i>
+
+            <h1>
+                AI
+            </h1>
+
+            <p>
+                Image Analysis
+            </p>
+
+        </div>
+
+
+
+        <div class="stat-box">
+
+            <i class="fa-solid fa-file-pdf"></i>
+
+            <h1>
+                PDF
+            </h1>
+
+            <p>
+                Report Generation
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- ================= HOW IT WORKS ================= -->
+
+<section class="how-it-works">
+
+
+    <h2>
+        How DermaCare AI Works
+    </h2>
+
+
+    <p class="how-subtitle">
+
+        Just 4 Easy Steps to Analyze Human Skin Diseases
+
+    </p>
+
+
+
+    <div class="steps">
+
+
+        <div class="step-card">
+
+            <i class="fa-solid fa-upload"></i>
+
+            <h3>
+                Step 1
+            </h3>
+
+            <p>
+                Upload a Human Skin Image.
+            </p>
+
+        </div>
+
+
+
+        <div class="step-card">
+
+            <i class="fa-solid fa-microchip"></i>
+
+            <h3>
+                Step 2
+            </h3>
+
+            <p>
+                AI Model Analyzes the Image.
+            </p>
+
+        </div>
+
+
+
+        <div class="step-card">
+
+            <i class="fa-solid fa-stethoscope"></i>
+
+            <h3>
+                Step 3
+            </h3>
+
+            <p>
+                Disease Prediction with Confidence Score.
+            </p>
+
+        </div>
+
+
+
+        <div class="step-card">
+
+            <i class="fa-solid fa-file-pdf"></i>
+
+            <h3>
+                Step 4
+            </h3>
+
+            <p>
+                Get PDF Report and General Healthcare Advice.
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+<!-- ================= FAQ ================= -->
+
+<section class="faq">
+
+
+    <h2>
+        Frequently Asked Questions
+    </h2>
+
+
+
+    <div class="faq-container">
+
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+
+                Is DermaCare AI free to use?
+
+                <span>+</span>
+
+            </button>
+
+
+            <div class="faq-answer">
+
+                <p>
+
+                    Yes. DermaCare AI is developed as an educational
+                    AI healthcare assistance project.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+
+                Which skin diseases can DermaCare AI detect?
+
+                <span>+</span>
+
+            </button>
+
+
+            <div class="faq-answer">
+
+                <p>
+
+                    The current Human Skin Care module supports
+                    Acne, Eczema, Melanoma, Psoriasis, Ringworm
+                    and Healthy skin classification.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+
+                Can it detect Animal skin diseases?
+
+                <span>+</span>
+
+            </button>
+
+
+            <div class="faq-answer">
+
+                <p>
+
+                    Animal Skin Care detection is currently under development
+                    and will be available in a future version.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+
+                Is Wound Detection available?
+
+                <span>+</span>
+
+            </button>
+
+
+            <div class="faq-answer">
+
+                <p>
+
+                    Wound Detection is currently under development
+                    and will be available in a future version.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+
+                Will I get a PDF Report?
+
+                <span>+</span>
+
+            </button>
+
+
+            <div class="faq-answer">
+
+                <p>
+
+                    Yes. After Human Skin Care analysis,
+                    you can generate and download a PDF report.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+
+                Is my uploaded image secure?
+
+                <span>+</span>
+
+            </button>
+
+
+            <div class="faq-answer">
+
+                <p>
+
+                    Uploaded images are used for the analysis process
+                    according to the application's current data handling.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+
+    <div class="footer-container">
+
+
+        <!-- Logo -->
+
+        <div class="footer-box">
+
+            <h2>
+                🩺 DermaCare AI
+            </h2>
+
+            <p>
+
+                AI Powered Human Skin Disease
+                Detection and Healthcare Assistance Platform.
+
+            </p>
+
+        </div>
+
+
+
+        <!-- Quick Links -->
+
+        <div class="footer-box">
+
+            <h3>
+                Quick Links
+            </h3>
+
+            <ul>
+
+                <li>
+                    <a href="#">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ url_for('login', type='human') }}">
+                        Human Skin
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#"
+                       onclick="showComingSoon(event, 'Animal Skin Care')">
+                        Animal Skin
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#"
+                       onclick="showComingSoon(event, 'Wound Detection')">
+                        Wound Detection
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/login">
+                        Login
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+
+        <!-- Services -->
+
+        <div class="footer-box">
+
+            <h3>
+                Services
+            </h3>
+
+            <ul>
+
+                <li>
+                    AI Detection
+                </li>
+
+                <li>
+                    Medicine Suggestion
+                </li>
+
+                <li>
+                    Home Remedies
+                </li>
+
+                <li>
+                    PDF Report
+                </li>
+
+                <li>
+                    Animal Skin Care – Coming Soon
+                </li>
+
+                <li>
+                    Wound Detection – Coming Soon
+                </li>
+
+            </ul>
+
+        </div>
+
+
+
+        <!-- Contact -->
+
+        <div class="footer-box">
+
+            <h3>
+                Contact
+            </h3>
+
+            <p>
+                📧 dermacareaiproject@gmail.com
+            </p>
+
+            <p>
+                📞 +91 9876543210
+            </p>
+
+            <p>
+                📍 Gujarat, India
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+
+    <hr>
+
+
+
+    <div class="footer-bottom">
+
+        <p>
+
+            © 2026 DermaCare AI | Developed by Meet Trapasiya
+
+        </p>
+
+    </div>
+
+
+</footer>
+
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+    function showComingSoon(event, feature) {
+
+        event.preventDefault();
+
+        alert(feature + " is coming soon!");
+
+    }
+
+</script>
+
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+
+</body>
+
+</html>

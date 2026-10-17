@@ -1,0 +1,279 @@
+/* =========================================================
+   ANIMAL DASHBOARD
+========================================================= */
+
+
+/* =========================================================
+   ANIMAL COLORS
+========================================================= */
+
+.animal-profile-icon,
+.animal-user-icon {
+    background: #e8f5e9 !important;
+    color: #2e7d32 !important;
+}
+
+
+.animal-logo {
+    color: #2e7d32 !important;
+}
+
+
+/* =========================================================
+   ANIMAL WELCOME
+========================================================= */
+
+.animal-welcome-section {
+    background: linear-gradient(
+        135deg,
+        #2e7d32,
+        #43a047
+    );
+}
+
+
+.animal-welcome-icon {
+    background: rgba(
+        255,
+        255,
+        255,
+        0.15
+    );
+}
+
+
+/* =========================================================
+   ANIMAL UPLOAD
+========================================================= */
+
+.animal-upload-section {
+    border-top: 4px solid #2e7d32;
+}
+
+
+.animal-upload-box {
+    border-color: #2e7d32;
+    background: #f8fff8;
+}
+
+
+.animal-upload-box.drag-over {
+    background: #e8f5e9;
+    border-color: #1b5e20;
+}
+
+
+.animal-upload-icon {
+    color: #2e7d32;
+}
+
+
+.animal-browse-btn {
+    background: #2e7d32;
+}
+
+
+.animal-browse-btn:hover {
+    background: #1b5e20;
+}
+
+
+/* =========================================================
+   ANALYZE BUTTON
+========================================================= */
+
+.animal-analyze-btn {
+    background: #2e7d32;
+}
+
+
+.animal-analyze-btn:hover {
+    background: #1b5e20;
+}
+
+
+/* =========================================================
+   FILE NAME
+========================================================= */
+
+.animal-file-name {
+    color: #2e7d32;
+}
+
+
+/* =========================================================
+   RESULT PLACEHOLDER
+========================================================= */
+
+.animal-result-placeholder {
+
+    max-width: 700px;
+
+    margin: 0 auto;
+
+    padding: 50px 30px;
+
+    text-align: center;
+
+    background: #ffffff;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0, 0, 0, 0.08);
+
+}
+
+
+.animal-result-icon {
+
+    width: 90px;
+
+    height: 90px;
+
+    margin: 0 auto 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #e8f5e9;
+
+    color: #2e7d32;
+
+    font-size: 40px;
+
+}
+
+
+.animal-result-placeholder h2 {
+
+    margin-bottom: 12px;
+
+    color: #1f2937;
+
+}
+
+
+.animal-result-placeholder p {
+
+    color: #6b7280;
+
+    line-height: 1.7;
+
+}
+
+
+.animal-result-placeholder span {
+
+    display: inline-block;
+
+    margin-top: 20px;
+
+    padding: 10px 20px;
+
+    border-radius: 25px;
+
+    background: #e8f5e9;
+
+    color: #2e7d32;
+
+    font-weight: 600;
+
+}
+
+
+/* =========================================================
+   ANIMAL FEATURE CARDS
+========================================================= */
+
+.animal-feature-card {
+
+    border-top: 3px solid #2e7d32;
+
+}
+
+
+.animal-feature-card i {
+
+    color: #2e7d32;
+
+}
+
+
+/* =========================================================
+   ANIMAL HISTORY
+========================================================= */
+
+.animal-history-section {
+
+    border-left: 4px solid #2e7d32;
+
+}
+
+
+.animal-history-section h2 {
+
+    color: #2e7d32;
+
+}
+
+
+.animal-coming-soon {
+
+    margin-top: 25px;
+
+    padding: 30px;
+
+    text-align: center;
+
+    background: #f8fff8;
+
+    border-radius: 15px;
+
+}
+
+
+.animal-coming-soon > i {
+
+    font-size: 45px;
+
+    color: #2e7d32;
+
+    margin-bottom: 15px;
+
+}
+
+
+.animal-coming-soon h3 {
+
+    margin-bottom: 10px;
+
+}
+
+
+.animal-coming-soon p {
+
+    color: #777;
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .animal-logo span {
+
+        font-size: 15px;
+
+    }
+
+}

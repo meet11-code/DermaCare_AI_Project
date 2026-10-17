@@ -1,0 +1,1645 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DermaCare AI - Dashboard</title>
+
+    <link
+        rel="icon"
+        type="image/png"
+        href="{{ url_for('static', filename='images/favicon.png') }}"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <!-- Dashboard CSS -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/dashboard.css') }}"
+    >
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+
+<body>
+
+
+<!-- ========================================================= -->
+<!-- SIDEBAR -->
+<!-- ========================================================= -->
+
+<aside
+    class="sidebar"
+    id="sidebar"
+>
+
+    <!-- SIDEBAR HEADER -->
+
+    <div class="sidebar-header">
+
+        <div class="profile">
+
+            <div class="profile-icon">
+
+                <i class="fa-solid fa-user"></i>
+
+            </div>
+
+            <div>
+
+                <h3>
+                    {{ session.get('user', 'Guest User') }}
+                </h3>
+
+                <p>
+                    Welcome
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- CLOSE SIDEBAR -->
+
+        <button
+            type="button"
+            class="close-btn"
+            id="closeSidebar"
+        >
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+    </div>
+
+
+    <!-- SIDEBAR MENU -->
+
+    <div class="sidebar-menu">
+
+
+        <!-- DASHBOARD -->
+
+        <a
+            href="{{ url_for('dashboard') }}"
+            class="active"
+        >
+
+            <i class="fa-solid fa-house"></i>
+
+            <span>
+                Dashboard
+            </span>
+
+        </a>
+
+
+        <!-- SKIN DETECTION -->
+
+        <a href="#skin-detection" class="sidebar-detection-link">
+
+            <i class="fa-solid fa-microscope"></i>
+
+            <span>
+                Skin Detection
+            </span>
+
+        </a>
+
+
+        <!-- ANIMAL SKIN CARE -->
+
+        <a
+            href="{{ url_for('animal_dashboard') }}"
+            class="detection-btn animal-btn"
+        >
+
+            <i class="fa-solid fa-paw"></i>
+
+            <span>
+                Animal Skin Care
+            </span>
+
+        </a>
+
+
+        <!-- WOUND DETECTION -->
+
+        <a href="#wound-module">
+
+            <i class="fa-solid fa-bandage"></i>
+
+            <span>
+                Wound Detection
+            </span>
+
+        </a>
+
+
+        <!-- HISTORY -->
+
+        <a href="{{ url_for('history') }}">
+
+            <i class="fa-solid fa-clock-rotate-left"></i>
+
+            <span>
+                History
+            </span>
+
+        </a>
+
+
+        <!-- ABOUT -->
+
+        <a href="#about">
+
+            <i class="fa-solid fa-circle-info"></i>
+
+            <span>
+                About
+            </span>
+
+        </a>
+
+
+        <!-- LOGOUT -->
+
+        <a href="{{ url_for('logout') }}">
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+            <span>
+                Logout
+            </span>
+
+        </a>
+
+
+    </div>
+
+</aside>
+
+
+
+<!-- ========================================================= -->
+<!-- MAIN CONTENT -->
+<!-- ========================================================= -->
+
+<main class="main-content">
+
+
+<!-- ========================================================= -->
+<!-- NAVBAR -->
+<!-- ========================================================= -->
+
+<nav class="navbar">
+
+
+    <!-- NAVBAR LEFT -->
+
+    <div class="navbar-left">
+
+
+        <!-- MENU BUTTON -->
+
+        <button
+            type="button"
+            class="menu-btn"
+            id="menuBtn"
+        >
+
+            <i class="fa-solid fa-bars"></i>
+
+        </button>
+
+
+        <!-- LOGO -->
+
+        <div class="logo">
+
+            <i class="fa-solid fa-stethoscope"></i>
+
+            <span>
+                DermaCare AI
+            </span>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- SEARCH -->
+
+    <div class="search-box">
+
+        <i class="fa-solid fa-magnifying-glass"></i>
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search Skin Disease"
+        >
+
+    </div>
+
+
+
+    <!-- NAVBAR RIGHT -->
+
+    <div class="navbar-right">
+
+
+        <!-- NOTIFICATION -->
+
+        <button
+            type="button"
+            class="notification-btn"
+        >
+
+            <i class="fa-regular fa-bell"></i>
+
+        </button>
+
+
+        <!-- USER PROFILE -->
+
+        <div class="user-profile">
+
+            <div class="user-icon">
+
+                <i class="fa-solid fa-user"></i>
+
+            </div>
+
+            <span>
+
+                {{ session.get('user', 'Guest User') }}
+
+            </span>
+
+        </div>
+
+
+    </div>
+
+</nav>
+
+
+
+<!-- ========================================================= -->
+<!-- DASHBOARD CONTAINER -->
+<!-- ========================================================= -->
+
+<section class="dashboard-container">
+
+
+<!-- ========================================================= -->
+<!-- FLASH MESSAGES -->
+<!-- ========================================================= -->
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+
+    {% if messages %}
+
+        <div class="flash-messages">
+
+            {% for category, message in messages %}
+
+                <div class="flash-message {{ category }}">
+
+                    {{ message }}
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% endif %}
+
+{% endwith %}
+
+
+
+<!-- ========================================================= -->
+<!-- WELCOME SECTION -->
+<!-- ========================================================= -->
+
+<div class="welcome-section">
+
+
+    <div class="welcome-text">
+
+        <p class="small-title">
+            Welcome to
+        </p>
+
+
+        <h1>
+            DermaCare AI
+        </h1>
+
+
+        <p>
+            AI Powered Human & Animal Skin Disease
+            and Wound Detection System
+        </p>
+
+
+        <p class="description">
+
+            Upload a skin or wound image and let our
+            AI system analyze the condition and provide
+            useful health information.
+
+        </p>
+
+    </div>
+
+
+    <div class="welcome-icon">
+
+        <i class="fa-solid fa-heart-pulse"></i>
+
+    </div>
+
+
+</div>
+
+
+
+<!-- ========================================================= -->
+<!-- STAT CARDS -->
+<!-- ========================================================= -->
+
+<div class="stats-grid">
+
+
+    <!-- TOTAL USERS -->
+
+    <div class="stat-card">
+
+        <div class="stat-icon blue">
+
+            <i class="fa-solid fa-users"></i>
+
+        </div>
+
+
+        <div>
+
+            <h3>
+                {{ total_users }}
+            </h3>
+
+            <p>
+                Total Users
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- TOTAL PREDICTIONS -->
+
+    <div class="stat-card">
+
+        <div class="stat-icon green">
+
+            <i class="fa-solid fa-microscope"></i>
+
+        </div>
+
+
+        <div>
+
+            <h3>
+                {{ total_predictions }}
+            </h3>
+
+            <p>
+                My Predictions
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- TOTAL REPORTS -->
+
+    <div class="stat-card">
+
+        <div class="stat-icon orange">
+
+            <i class="fa-solid fa-file-pdf"></i>
+
+        </div>
+
+
+        <div>
+
+            <h3>
+                {{ total_reports }}
+            </h3>
+
+            <p>
+                My Reports
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- HISTORY -->
+
+    <a
+        href="{{ url_for('history') }}"
+        class="stat-card history-stat-card"
+    >
+
+        <div class="stat-icon purple">
+
+            <i class="fa-solid fa-clock-rotate-left"></i>
+
+        </div>
+
+
+        <div>
+
+            <h3>
+                History
+            </h3>
+
+            <p>
+                View Previous Results
+            </p>
+
+        </div>
+
+    </a>
+
+
+</div>
+
+
+
+<!-- ========================================================= -->
+<!-- DETECTION TITLE -->
+<!-- ========================================================= -->
+
+<div class="section-title">
+
+    <h2>
+        Choose Detection Type
+    </h2>
+
+    <p>
+        Select an option to analyze skin conditions or wounds.
+    </p>
+
+</div>
+
+
+
+<!-- ================================================= -->
+<!-- DETECTION CARDS -->
+<!-- ================================================= -->
+
+<div class="detection-grid">
+
+    <!-- HUMAN SKIN -->
+
+    <div class="detection-card">
+
+
+    <div class="detection-icon human">
+        <i class="fa-solid fa-person"></i>
+    </div>
+
+    <h2>
+        Human Skin Care
+    </h2>
+
+    <p>
+        Analyze human skin images using artificial intelligence.
+    </p>
+
+    <!-- CURRENT HUMAN DASHBOARD KE SKIN DETECTION SECTION PAR JAYEGA -->
+    <a
+        href="#skin-detection"
+        class="detection-btn human-btn"
+    >
+        <i class="fa-solid fa-camera"></i>
+        Start Skin Detection
+    </a>
+
+
+    </div>
+
+    <!-- ANIMAL SKIN -->
+
+    <div class="detection-card">
+
+        <div class="detection-icon animal">
+            <i class="fa-solid fa-dog"></i>
+        </div>
+
+        <h2>
+            Animal Skin Care
+        </h2>
+
+        <p>
+            Upload and analyze animal skin conditions using AI.
+        </p>
+
+        <!-- ANIMAL CARE DASHBOARD PAR JAYEGA -->
+        <a
+            href="{{ url_for('animal_dashboard') }}"
+            class="detection-btn animal-btn"
+        >
+            <i class="fa-solid fa-paw"></i>
+            Animal Skin Care
+        </a>
+
+    </div>
+
+
+
+    <!-- WOUND DETECTION -->
+    <div class="detection-card">
+
+        <div class="detection-icon wound">
+            <i class="fa-solid fa-bandage"></i>
+        </div>
+
+        <h2>
+            Wound Detection
+        </h2>
+
+        <p>
+            Upload and analyze wound images using AI.
+        </p>
+
+        <a
+            href="#wound-module"
+            class="detection-btn wound-btn"
+            data-detection="wound"
+        >
+            <i class="fa-solid fa-bandage"></i>
+            Wound Detection
+        </a>
+
+    </div>
+
+</div>
+
+<!-- ========================================================= -->
+<!-- HUMAN SKIN DETECTION -->
+<!-- ========================================================= -->
+
+<section
+    class="upload-section"
+    id="skin-detection"
+>
+
+    <!-- SECTION TITLE -->
+    <div class="section-title">
+
+        <h2>
+            <i class="fa-solid fa-microscope"></i>
+            AI Skin Detection
+        </h2>
+
+        <p>
+            Upload a skin image and optionally describe your problem.
+        </p>
+
+    </div>
+
+
+    <!-- ===================================================== -->
+    <!-- IMAGE + TEXT COMBINED FORM -->
+    <!-- ===================================================== -->
+
+    <form
+        action="{{ url_for('dashboard') }}"
+        method="POST"
+        enctype="multipart/form-data"
+        class="upload-form"
+        id="uploadForm"
+    >
+
+
+        <!-- ================================================= -->
+        <!-- IMAGE UPLOAD -->
+        <!-- ================================================= -->
+
+        <div class="upload-box" id="uploadBox">
+
+            <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+
+            <h3>
+                Drag & Drop Your Image Here
+            </h3>
+
+            <p>
+                or click below to choose an image
+            </p>
+
+            <span class="file-format">
+                JPG, JPEG, PNG, WEBP
+            </span>
+
+
+            <!-- ================================================= -->
+            <!-- IMPORTANT: FILE INPUT -->
+            <!-- ================================================= -->
+
+            <input
+                type="file"
+                name="image"
+                id="imageInput"
+                accept=".png,.jpg,.jpeg,.webp,image/png,image/jpeg,image/webp"
+            >
+
+
+            <!-- ================================================= -->
+            <!-- BROWSE BUTTON -->
+            <!-- ================================================= -->
+
+            <label
+                for="imageInput"
+                class="browse-btn"
+            >
+
+                <i class="fa-solid fa-folder-open"></i>
+
+                Choose Image
+
+            </label>
+
+
+            <!-- FILE NAME -->
+
+            <p
+                id="fileName"
+                class="file-name"
+            ></p>
+
+        </div>
+
+
+        <!-- ================================================= -->
+        <!-- IMAGE PREVIEW -->
+        <!-- ================================================= -->
+
+        <div
+            class="image-preview"
+            id="imagePreview"
+        >
+
+            <p class="preview-title">
+                Image Preview
+            </p>
+
+
+            <div class="preview-image-container">
+
+                <img
+                    id="previewImage"
+                    src=""
+                    alt="Selected Image"
+                >
+
+            </div>
+
+        </div>
+
+
+        <!-- ================================================= -->
+        <!-- PROBLEM TEXT -->
+        <!-- ================================================= -->
+
+        <div class="combined-text-input">
+
+            <label for="combinedProblemText">
+
+                <i class="fa-solid fa-pen-to-square"></i>
+
+                Describe Your Skin Problem
+
+            </label>
+
+
+            <textarea
+                name="problem_text"
+                id="combinedProblemText"
+                placeholder="Example: I have red itchy patches on my hand for 5 days."
+                rows="5"
+            ></textarea>
+
+
+            <div class="text-help">
+
+                <i class="fa-solid fa-circle-info"></i>
+
+                <span>
+
+                    Describe your symptoms, affected body area,
+                    duration, itching, pain, redness, swelling,
+                    or any other noticeable changes.
+
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================================================= -->
+        <!-- ANALYZE IMAGE + PROBLEM BUTTON -->
+        <!-- ================================================= -->
+
+        <div class="combined-analyze-button">
+
+            <button
+                type="submit"
+                class="analyze-btn"
+            >
+
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+                Analyze Image + Problem
+
+            </button>
+
+        </div>
+
+
+    </form>
+
+</section>
+
+
+<!-- ========================================================= -->
+<!-- PREDICTION RESULT -->
+<!-- ========================================================= -->
+
+{% if prediction %}
+
+
+<section class="result-section">
+
+
+    <div class="section-title">
+
+
+        <h2>
+
+            <i class="fa-solid fa-square-poll-vertical"></i>
+
+            AI Analysis Result
+
+        </h2>
+
+
+    </div>
+
+
+
+    <div class="result-card">
+
+
+        <!-- UPLOADED IMAGE -->
+
+        {% if image_name %}
+
+
+        <div class="result-image">
+
+
+            <img
+                src="{{ url_for('static', filename='uploads/' + image_name) }}"
+                alt="Uploaded Skin Image"
+            >
+
+
+        </div>
+
+
+        {% endif %}
+
+
+
+        <!-- RESULT INFORMATION -->
+
+        <div class="result-information">
+
+
+            <h2>
+
+                Prediction:
+
+                <strong>
+
+                    {{ prediction }}
+
+                </strong>
+
+            </h2>
+
+
+
+            <p>
+                <strong>Confidence:</strong>
+                {% if confidence %}
+                    {% if confidence|string|lower == "low" %}
+                        Low
+                    {% else %}
+                        {{ confidence }}%
+                    {% endif %}
+                {% endif %}
+            </p>
+
+
+<!-- ========================================================= -->
+
+<!-- COMBINED AI ANALYSIS -->
+
+<!-- ========================================================= -->
+
+
+{% if combined_result %}
+
+<div class="combined-ai-card">
+
+<div class="combined-ai-header">
+    <span class="combined-ai-icon">🤖</span>
+    <div>
+        <h2>Combined AI Analysis</h2>
+        <p>Image prediction + reported symptoms</p>
+    </div>
+</div>
+
+
+<!-- ===================================================== -->
+<!-- MATCH STATUS -->
+<!-- ===================================================== -->
+
+{% set match_level = combined_result.get("match_level", "INCONCLUSIVE") %}
+
+
+{% if match_level == "MATCH" %}
+
+    <div class="match-status match">
+        <span>✅</span>
+        <div>
+            <strong>Image & Symptoms Match</strong>
+            <p>
+                The image prediction and reported symptoms
+                are reasonably consistent.
+            </p>
+        </div>
+    </div>
+
+
+{% elif match_level == "PARTIAL_MATCH" %}
+
+    <div class="match-status partial">
+        <span>⚠️</span>
+        <div>
+            <strong>Partial Match</strong>
+            <p>
+                Some findings are consistent, but there are
+                differences or uncertainty.
+            </p>
+        </div>
+    </div>
+
+
+{% elif match_level == "MISMATCH" %}
+
+    <div class="match-status mismatch">
+        <span>🚨</span>
+        <div>
+            <strong>Image & Symptoms Do Not Match</strong>
+            <p>
+                The image prediction and reported symptoms
+                may indicate different skin conditions.
+            </p>
+        </div>
+    </div>
+
+
+{% else %}
+
+    <div class="match-status inconclusive">
+        <span>❓</span>
+        <div>
+            <strong>Inconclusive</strong>
+            <p>
+                There is not enough information to determine
+                whether the image and symptoms match.
+            </p>
+        </div>
+    </div>
+
+{% endif %}
+
+
+<!-- ===================================================== -->
+<!-- FINAL ASSESSMENT -->
+<!-- ===================================================== -->
+
+<div class="combined-section">
+
+    <h3>🩺 Final Assessment</h3>
+
+    <div class="assessment-box">
+
+        <strong>
+            {{ combined_result.get("final_disease", "Inconclusive") }}
+        </strong>
+
+        <p>
+            {{ combined_result.get("assessment", "") }}
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- ===================================================== -->
+<!-- AI CONFIDENCE -->
+<!-- ===================================================== -->
+
+{% if combined_result.get("combined_confidence") %}
+<div class="combined-section">
+    <h3>📊 Combined Confidence</h3>
+    <p class="combined-confidence">
+        {{ combined_result.get("combined_confidence") }}
+    </p>
+</div>
+{% endif %}
+
+
+<!-- ===================================================== -->
+<!-- CARE -->
+<!-- ===================================================== -->
+
+{% if combined_result.get("care") %}
+
+<div class="combined-section">
+
+    <h3>🧴 Recommended Care</h3>
+
+    <p>
+        {{ combined_result.get("care") }}
+    </p>
+
+</div>
+
+{% endif %}
+
+
+<!-- ===================================================== -->
+<!-- MEDICINE -->
+<!-- ===================================================== -->
+
+{% if combined_result.get("medicine") %}
+
+<div class="combined-section">
+
+    <h3>💊 Medicine Information</h3>
+
+    <p>
+        {{ combined_result.get("medicine") }}
+    </p>
+
+</div>
+
+{% endif %}
+
+
+<!-- ===================================================== -->
+<!-- DOCTOR -->
+<!-- ===================================================== -->
+
+{% if combined_result.get("doctor") %}
+
+<div class="combined-section doctor-section">
+
+    <h3>👨‍⚕️ Doctor Advice</h3>
+
+    <p>
+        {{ combined_result.get("doctor") }}
+    </p>
+
+</div>
+
+{% endif %}
+
+
+<!-- ===================================================== -->
+<!-- DISCLAIMER -->
+<!-- ===================================================== -->
+
+<div class="combined-disclaimer">
+
+    ⚠️ <strong>Important:</strong>
+
+    This AI analysis is for informational and educational
+    purposes only. It is not a confirmed medical diagnosis.
+    Please consult a qualified healthcare professional
+    for proper diagnosis and treatment.
+
+</div>
+
+</div>
+
+{% endif %}
+
+
+            <!-- DESCRIPTION -->
+
+            {% if description %}
+
+
+            <div class="result-block">
+
+
+                <h3>
+
+                    <i class="fa-solid fa-circle-info"></i>
+
+                    Description
+
+                </h3>
+
+
+                <p>
+
+                    {{ description }}
+
+                </p>
+
+
+            </div>
+
+
+            {% endif %}
+
+
+
+            <!-- MEDICINE -->
+
+            {% if medicine %}
+
+
+            <div class="result-block">
+
+
+                <h3>
+
+                    <i class="fa-solid fa-pills"></i>
+
+                    Medicine / Treatment Information
+
+                </h3>
+
+
+                <p>
+
+                    {{ medicine }}
+
+                </p>
+
+
+            </div>
+
+
+            {% endif %}
+
+
+
+            <!-- REMEDY -->
+
+            {% if remedy %}
+
+
+            <div class="result-block">
+
+
+                <h3>
+
+                    <i class="fa-solid fa-leaf"></i>
+
+                    General Care / Home Remedy
+
+                </h3>
+
+
+                <p>
+
+                    {{ remedy }}
+
+                </p>
+
+
+            </div>
+
+
+            {% endif %}
+
+
+
+            <!-- DOCTOR -->
+
+            {% if doctor %}
+
+
+            <div class="result-block">
+
+
+                <h3>
+
+                    <i class="fa-solid fa-user-doctor"></i>
+
+                    Doctor Advice
+
+                </h3>
+
+
+                <p>
+
+                    {{ doctor }}
+
+                </p>
+
+
+            </div>
+
+
+            {% endif %}
+
+
+
+            <!-- PDF DOWNLOAD -->
+
+            {% if pdf_filename %}
+
+
+            <div class="report-download">
+
+
+                <a
+                    href="{{ url_for('download_report', filename=pdf_filename) }}"
+                    class="analyze-btn"
+                >
+
+                    <i class="fa-solid fa-file-pdf"></i>
+
+                    Download PDF Report
+
+                </a>
+
+
+            </div>
+
+
+            {% endif %}
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+{% endif %}
+
+
+
+<!-- ========================================================= -->
+<!-- TEXT PROBLEM SECTION -->
+<!-- ========================================================= -->
+
+<section
+    class="text-section"
+    id="text-analysis"
+>
+
+    <div class="section-title">
+
+        <h2>
+
+            <i class="fa-solid fa-comment-medical"></i>
+
+            Describe Your Problem
+
+        </h2>
+
+        <p>
+
+            Don't have an image?
+            Describe your skin problem and get an AI-assisted analysis.
+
+        </p>
+
+    </div>
+
+
+    <div class="text-input-container">
+
+        <form
+            action="{{ url_for('dashboard') }}"
+            method="POST"
+            class="text-analysis-form"
+        >
+
+
+            <label for="textOnlyProblem">
+
+                <i class="fa-solid fa-pen-to-square"></i>
+
+                Describe Your Skin Problem
+
+            </label>
+
+
+            <textarea
+                name="problem_text"
+                id="textOnlyProblem"
+                placeholder="Example: I have red itchy patches on my hand for 5 days."
+                rows="5"
+            ></textarea>
+
+
+            <div class="text-help">
+
+                <i class="fa-solid fa-circle-info"></i>
+
+                <span>
+
+                    Please describe your symptoms, affected body area,
+                    duration, itching, pain, redness, swelling,
+                    or any other noticeable changes.
+
+                </span>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="analyze-btn"
+            >
+
+                <i class="fa-solid fa-robot"></i>
+
+                Analyze My Problem
+
+            </button>
+
+
+        </form>
+
+    </div>
+
+
+    <!-- ===================================================== -->
+    <!-- TEXT ANALYSIS RESULT -->
+    <!-- ===================================================== -->
+
+    {% if text_data %}
+
+    <div class="text-result-card">
+
+        <h2>
+            🤖 AI Text Analysis
+        </h2>
+
+
+        <div class="result-block">
+
+            <h3>
+                🩺 Possible Disease
+            </h3>
+
+            <p>
+                {{ text_data.disease }}
+            </p>
+
+        </div>
+
+
+        <div class="result-block">
+
+            <h3>
+                📋 Reason
+            </h3>
+
+            <p>
+                {{ text_data.reason }}
+            </p>
+
+        </div>
+
+
+        <div class="result-block">
+
+            <h3>
+                🧴 General Care
+            </h3>
+
+            <p>
+                {{ text_data.care }}
+            </p>
+
+        </div>
+
+
+        <div class="result-block">
+
+            <h3>
+                💊 Medicine
+            </h3>
+
+            <p>
+                {{ text_data.medicine }}
+            </p>
+
+        </div>
+
+
+        <div class="result-block">
+
+            <h3>
+                👨‍⚕️ Doctor Advice
+            </h3>
+
+            <p>
+                {{ text_data.doctor }}
+            </p>
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+</section>
+
+
+
+<!-- ========================================================= -->
+<!-- FEATURES -->
+<!-- ========================================================= -->
+
+<section class="features-section">
+
+
+    <div class="section-title">
+
+
+        <h2>
+
+            Why Choose DermaCare AI?
+
+        </h2>
+
+
+    </div>
+
+
+
+    <div class="features-grid">
+
+
+        <!-- FEATURE 1 -->
+
+        <div class="feature-card">
+
+
+            <i class="fa-solid fa-image"></i>
+
+
+            <h3>
+
+                Image Upload
+
+            </h3>
+
+
+            <p>
+
+                Upload skin images
+                for AI analysis.
+
+            </p>
+
+
+        </div>
+
+
+
+        <!-- FEATURE 2 -->
+
+        <div class="feature-card">
+
+
+            <i class="fa-solid fa-robot"></i>
+
+
+            <h3>
+
+                AI Detection
+
+            </h3>
+
+
+            <p>
+
+                Artificial intelligence helps
+                identify possible skin conditions.
+
+            </p>
+
+
+        </div>
+
+
+
+        <!-- FEATURE 3 -->
+
+        <div class="feature-card">
+
+
+            <i class="fa-solid fa-pills"></i>
+
+
+            <h3>
+
+                Medicine Suggestions
+
+            </h3>
+
+
+            <p>
+
+                Get general information about
+                possible care options.
+
+            </p>
+
+
+        </div>
+
+
+
+        <!-- FEATURE 4 -->
+
+        <div class="feature-card">
+
+
+            <i class="fa-solid fa-house-medical"></i>
+
+
+            <h3>
+
+                Home Remedies
+
+            </h3>
+
+
+            <p>
+
+                Learn basic home care and
+                precautionary information.
+
+            </p>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- ========================================================= -->
+<!-- ABOUT -->
+<!-- ========================================================= -->
+
+<section
+    class="about-section"
+    id="about"
+>
+
+
+    <div>
+
+
+        <h2>
+
+            About DermaCare AI
+
+        </h2>
+
+
+        <p>
+
+            DermaCare AI is an AI-powered college project
+            designed to help users understand possible
+            human and animal skin conditions and wounds
+            through image-based analysis.
+
+        </p>
+
+
+        <p class="warning-text">
+
+
+            <i class="fa-solid fa-triangle-exclamation"></i>
+
+
+            This system is for educational and informational
+            purposes only. It is not a replacement for
+            professional medical or veterinary advice.
+
+
+        </p>
+
+
+    </div>
+
+
+</section>
+
+
+
+</section>
+<!-- END DASHBOARD CONTAINER -->
+
+
+
+<!-- ========================================================= -->
+<!-- FOOTER -->
+<!-- ========================================================= -->
+
+<footer class="footer">
+
+
+    <p>
+
+        © 2026 DermaCare AI.
+        All Rights Reserved.
+
+    </p>
+
+
+    <p>
+
+        AI Powered Human & Animal Skin Care
+
+    </p>
+
+
+</footer>
+
+
+</main>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+# Python virtual environment
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+
+# Environment variables and secrets
+.env
+.env.*
+
+# Large datasets
+dataset/
+data/
+
+# User-uploaded images
+uploads/
+static/upload/
+
+# Temporary files
+*.log
+.DS_Store

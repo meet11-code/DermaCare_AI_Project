@@ -1,0 +1,229 @@
+/* =========================================================
+   DERMACARE AI - REGISTER PAGE
+   Same Design Language as Login Page
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: 'Poppins', sans-serif;
+
+    background: linear-gradient(
+        135deg,
+        #e3f2fd,
+        #ffffff,
+        #e8f5e9
+    );
+}
+
+
+/* =========================================================
+   REGISTER CONTAINER
+   ========================================================= */
+
+.register-container {
+    width: 420px;
+    max-width: 92%;
+
+    padding: 40px 38px;
+
+    background: #ffffff;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.12);
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   HEADING
+   ========================================================= */
+
+.register-container h1 {
+    margin-bottom: 28px;
+
+    font-size: 30px;
+    font-weight: 600;
+
+    color: #1565c0;
+}
+
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.register-container form {
+    width: 100%;
+}
+
+
+/* =========================================================
+   INPUT FIELDS
+   ========================================================= */
+
+.register-container input {
+    width: 100%;
+
+    padding: 14px 16px;
+
+    margin-bottom: 16px;
+
+    border: 1px solid #d6dce1;
+
+    border-radius: 10px;
+
+    outline: none;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+
+    color: #333;
+
+    background: #ffffff;
+
+    transition: all 0.25s ease;
+}
+
+
+/* Placeholder */
+
+.register-container input::placeholder {
+    color: #999;
+}
+
+
+/* Input Focus */
+
+.register-container input:focus {
+    border-color: #1976d2;
+
+    box-shadow:
+        0 0 0 3px rgba(25, 118, 210, 0.10);
+}
+
+
+/* =========================================================
+   REGISTER BUTTON
+   ========================================================= */
+
+.register-btn {
+    width: 100%;
+
+    padding: 14px;
+
+    margin-top: 5px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: linear-gradient(
+        135deg,
+        #1565c0,
+        #1976d2
+    );
+
+    color: #ffffff;
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+
+    box-shadow:
+        0 6px 15px rgba(21, 101, 192, 0.25);
+}
+
+
+/* Button Hover */
+
+.register-btn:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 9px 20px rgba(21, 101, 192, 0.30);
+}
+
+
+/* Button Click */
+
+.register-btn:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   LOGIN LINK
+   ========================================================= */
+
+.login-link {
+    margin-top: 22px;
+
+    font-size: 13px;
+
+    color: #666;
+}
+
+
+.login-link a {
+    margin-left: 4px;
+
+    color: #1565c0;
+
+    text-decoration: none;
+
+    font-weight: 600;
+
+    transition: color 0.2s ease;
+}
+
+
+.login-link a:hover {
+    color: #0d47a1;
+
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 500px) {
+
+    .register-container {
+        width: 92%;
+
+        padding: 32px 25px;
+    }
+
+    .register-container h1 {
+        font-size: 26px;
+    }
+
+    .register-container input {
+        padding: 13px 14px;
+    }
+
+    .register-btn {
+        padding: 13px;
+    }
+}

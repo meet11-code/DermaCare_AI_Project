@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>DermaCare AI - Animal Dashboard</title>
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <!-- Dashboard CSS -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/dashboard.css') }}"
+    >
+
+    <!-- Animal Dashboard CSS -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/animal_dashboard.css') }}"
+    >
+
+    
+
+</head>
+
+
+<body>
+
+
+<!-- ========================================================= -->
+<!-- SIDEBAR -->
+<!-- ========================================================= -->
+
+<aside
+    class="sidebar"
+    id="animalSidebar"
+>
+
+    <!-- SIDEBAR HEADER -->
+
+    <div class="sidebar-header">
+
+        <div class="profile">
+
+            <div class="profile-icon animal-profile-icon">
+
+                <i class="fa-solid fa-paw"></i>
+
+            </div>
+
+            <div>
+
+                <h3>
+                    {{ username }}
+                </h3>
+
+                <p>
+                    Animal Skin Care
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- CLOSE BUTTON -->
+
+        <button
+            type="button"
+            class="close-btn"
+            id="closeAnimalSidebar"
+        >
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+    </div>
+
+
+    <!-- SIDEBAR MENU -->
+
+    <div class="sidebar-menu">
+
+
+        <!-- ANIMAL DASHBOARD -->
+
+        <a
+            href="{{ url_for('animal_dashboard') }}"
+            class="active"
+        >
+
+            <i class="fa-solid fa-house"></i>
+
+            <span>
+                Animal Dashboard
+            </span>
+
+        </a>
+
+
+        <!-- ANIMAL SKIN DETECTION -->
+
+        <a href="#animal-skin-detection">
+
+            <i class="fa-solid fa-microscope"></i>
+
+            <span>
+                Skin Detection
+            </span>
+
+        </a>
+
+
+        <!-- HUMAN DASHBOARD -->
+
+        <a href="{{ url_for('dashboard') }}">
+
+            <i class="fa-solid fa-user"></i>
+
+            <span>
+                Human Skin Care
+            </span>
+
+        </a>
+
+
+        <!-- HISTORY -->
+
+        <a href="#animal-history">
+
+            <i class="fa-solid fa-clock-rotate-left"></i>
+
+            <span>
+                Animal History
+            </span>
+
+        </a>
+
+
+        <!-- ABOUT -->
+
+        <a href="#animal-about">
+
+            <i class="fa-solid fa-circle-info"></i>
+
+            <span>
+                About
+            </span>
+
+        </a>
+
+
+        <!-- LOGOUT -->
+
+        <a href="{{ url_for('logout', next='animal') }}">
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+            <span>
+                Logout
+            </span>
+
+        </a>
+
+
+    </div>
+
+</aside>
+
+
+
+<!-- ========================================================= -->
+<!-- MAIN CONTENT -->
+<!-- ========================================================= -->
+
+<main class="main-content">
+
+
+<!-- ========================================================= -->
+<!-- NAVBAR -->
+<!-- ========================================================= -->
+
+<nav class="navbar">
+
+
+    <!-- NAVBAR LEFT -->
+
+    <div class="navbar-left">
+
+
+        <!-- MENU BUTTON -->
+
+        <button
+            type="button"
+            class="menu-btn"
+            id="animalMenuBtn"
+        >
+
+            <i class="fa-solid fa-bars"></i>
+
+        </button>
+
+
+        <!-- LOGO -->
+
+        <div class="logo animal-logo">
+
+            <i class="fa-solid fa-paw"></i>
+
+            <span>
+                DermaCare AI - Animal Care
+            </span>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- SEARCH -->
+
+    <div class="search-box">
+
+        <i class="fa-solid fa-magnifying-glass"></i>
+
+        <input
+            type="text"
+            placeholder="Search Animal Skin Disease"
+        >
+
+    </div>
+
+
+
+    <!-- NAVBAR RIGHT -->
+
+    <div class="navbar-right">
+
+
+        <!-- NOTIFICATION -->
+
+        <button
+            type="button"
+            class="notification-btn"
+        >
+
+            <i class="fa-regular fa-bell"></i>
+
+        </button>
+
+
+        <!-- USER PROFILE -->
+
+        <div class="user-profile">
+
+            <div class="user-icon animal-user-icon">
+
+                <i class="fa-solid fa-paw"></i>
+
+            </div>
+
+            <span>
+                {{ username }}
+            </span>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+
+<!-- ========================================================= -->
+<!-- DASHBOARD CONTAINER -->
+<!-- ========================================================= -->
+
+<section class="dashboard-container">
+
+
+<!-- ========================================================= -->
+<!-- WELCOME SECTION -->
+<!-- ========================================================= -->
+
+<div class="welcome-section animal-welcome-section">
+
+
+    <div class="welcome-text">
+
+        <p class="small-title">
+            Welcome to
+        </p>
+
+
+        <h1>
+            Animal Skin Care 🐶
+        </h1>
+
+
+        <p>
+            AI Powered Animal Skin Disease Detection System
+        </p>
+
+
+        <p class="description">
+
+            Upload an image of an animal's skin condition
+            and our AI system will help analyze the possible
+            skin problem and provide general care information.
+
+        </p>
+
+    </div>
+
+
+    <div class="welcome-icon animal-welcome-icon">
+
+        <i class="fa-solid fa-paw"></i>
+
+    </div>
+
+</div>
+
+
+
+<!-- ========================================================= -->
+<!-- STAT CARDS -->
+<!-- ========================================================= -->
+
+<div class="stats-grid">
+
+
+    <!-- ANIMAL CASES -->
+
+    <div class="stat-card">
+
+        <div class="stat-icon green">
+
+            <i class="fa-solid fa-paw"></i>
+
+        </div>
+
+        <div>
+
+            <h3>
+                Animal Care
+            </h3>
+
+            <p>
+                AI Skin Analysis
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- IMAGE ANALYSIS -->
+
+    <div class="stat-card">
+
+        <div class="stat-icon blue">
+
+            <i class="fa-solid fa-image"></i>
+
+        </div>
+
+        <div>
+
+            <h3>
+                Image Analysis
+            </h3>
+
+            <p>
+                Upload Animal Image
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- AI DETECTION -->
+
+    <div class="stat-card">
+
+        <div class="stat-icon purple">
+
+            <i class="fa-solid fa-robot"></i>
+
+        </div>
+
+        <div>
+
+            <h3>
+                AI Detection
+            </h3>
+
+            <p>
+                Smart Prediction
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- HUMAN DASHBOARD -->
+
+    <a
+        href="{{ url_for('dashboard') }}"
+        class="stat-card history-stat-card"
+    >
+
+        <div class="stat-icon orange">
+
+            <i class="fa-solid fa-user"></i>
+
+        </div>
+
+        <div>
+
+            <h3>
+                Human Care
+            </h3>
+
+            <p>
+                Open Human Dashboard
+            </p>
+
+        </div>
+
+    </a>
+
+</div>
+
+
+
+<!-- ========================================================= -->
+<!-- DETECTION TITLE -->
+<!-- ========================================================= -->
+
+<div class="section-title">
+
+    <h2>
+        Animal Skin Disease Detection
+    </h2>
+
+    <p>
+        Upload an animal skin image for AI-powered analysis.
+    </p>
+
+</div>
+
+
+
+<!-- ========================================================= -->
+<!-- ANIMAL SKIN DETECTION -->
+<!-- ========================================================= -->
+
+<section
+    class="upload-section animal-upload-section"
+    id="animal-skin-detection"
+>
+
+
+    <div class="section-title">
+
+        <h2>
+
+            <i class="fa-solid fa-paw"></i>
+
+            Upload Animal Skin Image
+
+        </h2>
+
+
+        <p>
+
+            Upload a clear image of the affected animal skin area.
+
+        </p>
+
+    </div>
+
+
+
+    <!-- IMAGE UPLOAD FORM -->
+
+    <form
+        action="{{ url_for('animal_dashboard') }}"
+        method="POST"
+        enctype="multipart/form-data"
+        class="upload-form"
+        id="animalUploadForm"
+    >
+
+
+        <!-- DROP ZONE -->
+
+        <div
+            class="upload-box animal-upload-box"
+            id="animalUploadBox"
+        >
+
+
+            <i class="fa-solid fa-cloud-arrow-up upload-icon animal-upload-icon"></i>
+
+
+            <h3>
+
+                Drag & Drop Animal Image Here
+
+            </h3>
+
+
+            <p>
+
+                or click below to choose an image
+
+            </p>
+
+
+            <span class="file-format">
+
+                JPG, JPEG, PNG, WEBP
+
+            </span>
+
+
+
+            <!-- FILE INPUT -->
+
+            <input
+                type="file"
+                name="animal_image"
+                id="animalImageInput"
+                accept=".png,.jpg,.jpeg,.webp,image/png,image/jpeg,image/webp"
+                hidden
+            >
+
+
+
+            <!-- BROWSE BUTTON -->
+
+            <label
+                for="animalImageInput"
+                class="browse-btn animal-browse-btn"
+            >
+
+                <i class="fa-solid fa-folder-open"></i>
+
+                Choose Animal Image
+
+            </label>
+
+
+
+            <!-- FILE NAME -->
+
+            <p
+                id="animalFileName"
+                class="file-name animal-file-name"
+            >
+            </p>
+
+
+        </div>
+
+
+
+        <!-- IMAGE PREVIEW -->
+
+        <div
+            class="image-preview"
+            id="animalImagePreview"
+        >
+
+
+            <p class="preview-title">
+
+                Animal Image Preview
+
+            </p>
+
+
+            <div class="preview-image-container">
+
+
+                <img
+                    id="animalPreviewImage"
+                    src=""
+                    alt="Animal Skin Image"
+                >
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- ANALYZE BUTTON -->
+
+        <button
+            type="submit"
+            class="analyze-btn animal-analyze-btn"
+        >
+
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+            Analyze Animal Skin
+
+        </button>
+
+
+    </form>
+
+
+</section>
+
+
+
+<!-- ========================================================= -->
+<!-- FUTURE AI RESULT -->
+<!-- ========================================================= -->
+
+<section class="result-section">
+
+
+    <div class="section-title">
+
+        <h2>
+
+            <i class="fa-solid fa-robot"></i>
+
+            AI Animal Skin Analysis
+
+        </h2>
+
+    </div>
+
+
+    <div class="animal-result-placeholder">
+
+
+        <div class="animal-result-icon">
+
+            <i class="fa-solid fa-paw"></i>
+
+        </div>
+
+
+        <h2>
+            AI Analysis Result
+        </h2>
+
+
+        <p>
+
+            Upload an animal skin image and click
+            <strong>Analyze Animal Skin</strong>
+            to see the AI prediction here.
+
+        </p>
+
+
+        <span>
+            AI Prediction Module
+        </span>
+
+    </div>
+
+</section>
+
+
+
+<!-- ========================================================= -->
+<!-- ANIMAL CARE INFORMATION -->
+<!-- ========================================================= -->
+
+<section class="features-section">
+
+
+    <div class="section-title">
+
+        <h2>
+            Animal Care Features
+        </h2>
+
+        <p>
+            Helpful information for animal skin health.
+        </p>
+
+    </div>
+
+
+    <div class="features-grid">
+
+
+        <!-- FEATURE 1 -->
+
+        <div class="feature-card animal-feature-card">
+
+            <i class="fa-solid fa-image"></i>
+
+            <h3>
+                Image Upload
+            </h3>
+
+            <p>
+                Upload clear images of animal skin conditions
+                for AI analysis.
+            </p>
+
+        </div>
+
+
+        <!-- FEATURE 2 -->
+
+        <div class="feature-card animal-feature-card">
+
+            <i class="fa-solid fa-robot"></i>
+
+            <h3>
+                AI Detection
+            </h3>
+
+            <p>
+                AI model can help identify possible
+                animal skin conditions.
+            </p>
+
+        </div>
+
+
+        <!-- FEATURE 3 -->
+
+        <div class="feature-card animal-feature-card">
+
+            <i class="fa-solid fa-kit-medical"></i>
+
+            <h3>
+                Care Information
+            </h3>
+
+            <p>
+                Get general information about possible
+                care and treatment options.
+            </p>
+
+        </div>
+
+
+        <!-- FEATURE 4 -->
+
+        <div class="feature-card animal-feature-card">
+
+            <i class="fa-solid fa-user-doctor"></i>
+
+            <h3>
+                Veterinary Advice
+            </h3>
+
+            <p>
+                Consult a qualified veterinarian for
+                professional diagnosis and treatment.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ========================================================= -->
+<!-- ANIMAL HISTORY -->
+<!-- ========================================================= -->
+
+<section
+    class="about-section animal-history-section"
+    id="animal-history"
+>
+
+
+    <h2>
+
+        <i class="fa-solid fa-clock-rotate-left"></i>
+
+        Animal Prediction History
+
+    </h2>
+
+
+    <p>
+
+        Your previous animal skin analysis reports
+        will appear here after the history module is connected.
+
+    </p>
+
+
+    <div class="animal-coming-soon">
+
+        <i class="fa-solid fa-folder-open"></i>
+
+        <h3>
+            History Module Coming Soon
+        </h3>
+
+        <p>
+            Animal prediction history and PDF reports
+            will be available in the next module.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- ========================================================= -->
+<!-- ABOUT -->
+<!-- ========================================================= -->
+
+<section
+    class="about-section"
+    id="animal-about"
+>
+
+
+    <h2>
+
+        <i class="fa-solid fa-circle-info"></i>
+
+        About Animal Skin Care
+
+    </h2>
+
+
+    <p>
+
+        DermaCare AI Animal Skin Care is an educational
+        AI-assisted system designed to help users understand
+        possible skin conditions in animals through image
+        analysis.
+
+    </p>
+
+
+    <p class="warning-text">
+
+        <i class="fa-solid fa-triangle-exclamation"></i>
+
+        This system is for educational and informational
+        purposes only. It is not a replacement for
+        professional veterinary diagnosis or treatment.
+
+    </p>
+
+</section>
+
+
+
+</section>
+<!-- END DASHBOARD CONTAINER -->
+
+
+
+<!-- ========================================================= -->
+<!-- FOOTER -->
+<!-- ========================================================= -->
+
+<footer class="footer">
+
+    <p>
+        © 2026 DermaCare AI.
+        All Rights Reserved.
+    </p>
+
+    <p>
+        AI Powered Animal Skin Care
+    </p>
+
+</footer>
+
+
+</main>
+
+
+
+<!-- ========================================================= -->
+<!-- JAVASCRIPT -->
+<!-- ========================================================= -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+
+    /* =======================================================
+       SIDEBAR
+    ======================================================= */
+
+    const sidebar =
+        document.getElementById("animalSidebar");
+
+    const menuBtn =
+        document.getElementById("animalMenuBtn");
+
+    const closeBtn =
+        document.getElementById("closeAnimalSidebar");
+
+
+    if (menuBtn && sidebar) {
+
+        menuBtn.addEventListener("click", function () {
+
+            sidebar.classList.toggle("active");
+
+        });
+
+    }
+
+
+    if (closeBtn && sidebar) {
+
+        closeBtn.addEventListener("click", function () {
+
+            sidebar.classList.remove("active");
+
+        });
+
+    }
+
+
+
+    /* =======================================================
+       IMAGE UPLOAD PREVIEW
+    ======================================================= */
+
+    const imageInput =
+        document.getElementById("animalImageInput");
+
+    const imagePreview =
+        document.getElementById("animalImagePreview");
+
+    const previewImage =
+        document.getElementById("animalPreviewImage");
+
+    const fileName =
+        document.getElementById("animalFileName");
+
+
+    if (imageInput) {
+
+        imageInput.addEventListener("change", function () {
+
+            const file =
+                this.files[0];
+
+
+            if (file) {
+
+                fileName.textContent =
+                    "Selected: " + file.name;
+
+
+                const reader =
+                    new FileReader();
+
+
+                reader.onload =
+                    function (event) {
+
+                        previewImage.src =
+                            event.target.result;
+
+                        imagePreview.style.display =
+                            "block";
+
+                    };
+
+
+                reader.readAsDataURL(file);
+
+            }
+
+        });
+
+    }
+
+
+
+    /* =======================================================
+       DRAG & DROP
+    ======================================================= */
+
+    const uploadBox =
+        document.getElementById("animalUploadBox");
+
+
+    if (uploadBox) {
+
+
+        uploadBox.addEventListener(
+            "dragover",
+            function (event) {
+
+                event.preventDefault();
+
+                uploadBox.classList.add(
+                    "drag-over"
+                );
+
+            }
+        );
+
+
+        uploadBox.addEventListener(
+            "dragleave",
+            function () {
+
+                uploadBox.classList.remove(
+                    "drag-over"
+                );
+
+            }
+        );
+
+
+        uploadBox.addEventListener(
+            "drop",
+            function (event) {
+
+                event.preventDefault();
+
+                uploadBox.classList.remove(
+                    "drag-over"
+                );
+
+
+                const files =
+                    event.dataTransfer.files;
+
+
+                if (files.length > 0) {
+
+                    imageInput.files =
+                        files;
+
+
+                    const file =
+                        files[0];
+
+
+                    fileName.textContent =
+                        "Selected: " + file.name;
+
+
+                    const reader =
+                        new FileReader();
+
+
+                    reader.onload =
+                        function (event) {
+
+                            previewImage.src =
+                                event.target.result;
+
+                            imagePreview.style.display =
+                                "block";
+
+                        };
+
+
+                    reader.readAsDataURL(file);
+
+                }
+
+            }
+        );
+
+    }
+
+});
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Animal Skin Care | DermaCare AI</title>
+
+<!-- Google Font -->
+<link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+>
+
+<!-- Font Awesome -->
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+>
+
+<!-- Main CSS -->
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}"
+>
+
+<style>
+
+    /* =====================================================
+       ANIMAL CARE PAGE
+    ===================================================== */
+
+    .animal-page {
+
+        min-height: 100vh;
+
+        background:
+            linear-gradient(
+                135deg,
+                rgba(240, 253, 244, 0.96),
+                rgba(239, 246, 255, 0.96)
+            );
+
+    }
+
+
+    /* =====================================================
+       NAVBAR
+    ===================================================== */
+
+    .animal-navbar {
+
+        height: 75px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        padding: 0 6%;
+
+        background: rgba(255, 255, 255, 0.95);
+
+        box-shadow:
+            0 4px 20px rgba(0, 0, 0, 0.08);
+
+        position: sticky;
+
+        top: 0;
+
+        z-index: 100;
+
+    }
+
+
+    .animal-logo {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 10px;
+
+    }
+
+
+    .animal-logo h2 {
+
+        color: #1565C0;
+
+        font-size: 22px;
+
+    }
+
+
+    .animal-logo i {
+
+        color: #2E7D32;
+
+        font-size: 25px;
+
+    }
+
+
+    .back-home {
+
+        text-decoration: none;
+
+        color: white;
+
+        background: #1565C0;
+
+        padding: 10px 20px;
+
+        border-radius: 25px;
+
+        font-weight: 500;
+
+        transition: 0.3s;
+
+    }
+
+
+    .back-home:hover {
+
+        background: #0D47A1;
+
+        transform: translateY(-2px);
+
+    }
+
+
+    /* =====================================================
+       HERO
+    ===================================================== */
+
+    .animal-hero {
+
+        min-height: 520px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        gap: 50px;
+
+        padding: 60px 8%;
+
+    }
+
+
+    .animal-hero-content {
+
+        flex: 1;
+
+    }
+
+
+    .animal-badge {
+
+        display: inline-block;
+
+        padding: 8px 18px;
+
+        border-radius: 25px;
+
+        background: #E8F5E9;
+
+        color: #2E7D32;
+
+        font-weight: 600;
+
+        margin-bottom: 18px;
+
+    }
+
+
+    .animal-hero-content h1 {
+
+        font-size: 46px;
+
+        line-height: 1.2;
+
+        color: #123;
+
+        margin-bottom: 20px;
+
+    }
+
+
+    .animal-hero-content h1 span {
+
+        color: #2E7D32;
+
+    }
+
+
+    .animal-hero-content p {
+
+        font-size: 17px;
+
+        color: #555;
+
+        line-height: 1.8;
+
+        max-width: 650px;
+
+    }
+
+
+    .animal-action-buttons {
+
+        display: flex;
+
+        gap: 15px;
+
+        margin-top: 30px;
+
+        flex-wrap: wrap;
+
+    }
+
+
+    .animal-primary-btn,
+    .animal-secondary-btn {
+
+        text-decoration: none;
+
+        padding: 13px 24px;
+
+        border-radius: 30px;
+
+        font-weight: 600;
+
+        transition: 0.3s;
+
+        display: inline-flex;
+
+        align-items: center;
+
+        gap: 10px;
+
+    }
+
+
+    .animal-primary-btn {
+
+        background: #2E7D32;
+
+        color: white;
+
+    }
+
+
+    .animal-primary-btn:hover {
+
+        background: #1B5E20;
+
+        transform: translateY(-3px);
+
+        box-shadow:
+            0 8px 20px rgba(46, 125, 50, 0.3);
+
+    }
+
+
+    .animal-secondary-btn {
+
+        background: white;
+
+        color: #1565C0;
+
+        border: 2px solid #1565C0;
+
+    }
+
+
+    .animal-secondary-btn:hover {
+
+        background: #1565C0;
+
+        color: white;
+
+    }
+
+
+    /* =====================================================
+       HERO IMAGE
+    ===================================================== */
+
+    .animal-hero-image {
+
+        flex: 1;
+
+        display: flex;
+
+        justify-content: center;
+
+    }
+
+
+    .animal-image-card {
+
+        width: 420px;
+
+        max-width: 100%;
+
+        padding: 20px;
+
+        border-radius: 30px;
+
+        background: white;
+
+        box-shadow:
+            0 15px 45px rgba(0, 0, 0, 0.12);
+
+        position: relative;
+
+        overflow: hidden;
+
+    }
+
+
+    .animal-image-card img {
+
+        width: 100%;
+
+        height: 350px;
+
+        object-fit: cover;
+
+        border-radius: 20px;
+
+    }
+
+
+    .animal-floating-card {
+
+        position: absolute;
+
+        bottom: 35px;
+
+        left: 35px;
+
+        background: white;
+
+        padding: 12px 18px;
+
+        border-radius: 15px;
+
+        box-shadow:
+            0 8px 25px rgba(0, 0, 0, 0.15);
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 10px;
+
+    }
+
+
+    .animal-floating-card i {
+
+        color: #2E7D32;
+
+        font-size: 22px;
+
+    }
+
+
+    /* =====================================================
+       FEATURES
+    ===================================================== */
+
+    .animal-features {
+
+        padding: 70px 8%;
+
+        background: white;
+
+        text-align: center;
+
+    }
+
+
+    .animal-features h2 {
+
+        font-size: 34px;
+
+        color: #123;
+
+        margin-bottom: 10px;
+
+    }
+
+
+    .animal-subtitle {
+
+        color: #666;
+
+        margin-bottom: 40px;
+
+    }
+
+
+    .animal-feature-grid {
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(
+                auto-fit,
+                minmax(220px, 1fr)
+            );
+
+        gap: 25px;
+
+    }
+
+
+    .animal-feature-card {
+
+        padding: 30px 22px;
+
+        border-radius: 20px;
+
+        background: #F8FFF9;
+
+        border: 1px solid #E0F2E1;
+
+        transition: 0.3s;
+
+    }
+
+
+    .animal-feature-card:hover {
+
+        transform: translateY(-8px);
+
+        box-shadow:
+            0 12px 30px rgba(0, 0, 0, 0.1);
+
+    }
+
+
+    .animal-feature-card i {
+
+        font-size: 35px;
+
+        color: #2E7D32;
+
+        margin-bottom: 15px;
+
+    }
+
+
+    .animal-feature-card h3 {
+
+        color: #222;
+
+        margin-bottom: 10px;
+
+    }
+
+
+    .animal-feature-card p {
+
+        color: #666;
+
+        line-height: 1.6;
+
+    }
+
+
+    /* =====================================================
+       HOW IT WORKS
+    ===================================================== */
+
+    .animal-how {
+
+        padding: 70px 8%;
+
+        text-align: center;
+
+        background: #EEF7FF;
+
+    }
+
+
+    .animal-how h2 {
+
+        font-size: 34px;
+
+        color: #123;
+
+    }
+
+
+    .animal-steps {
+
+        margin-top: 40px;
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(
+                auto-fit,
+                minmax(200px, 1fr)
+            );
+
+        gap: 25px;
+
+    }
+
+
+    .animal-step {
+
+        background: white;
+
+        padding: 30px 20px;
+
+        border-radius: 20px;
+
+        box-shadow:
+            0 8px 25px rgba(0, 0, 0, 0.07);
+
+    }
+
+
+    .animal-step-number {
+
+        width: 50px;
+
+        height: 50px;
+
+        margin: 0 auto 15px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        border-radius: 50%;
+
+        background: #2E7D32;
+
+        color: white;
+
+        font-weight: 700;
+
+        font-size: 20px;
+
+    }
+
+
+    .animal-step h3 {
+
+        margin-bottom: 10px;
+
+    }
+
+
+    .animal-step p {
+
+        color: #666;
+
+        line-height: 1.6;
+
+    }
+
+
+    /* =====================================================
+       DISCLAIMER
+    ===================================================== */
+
+    .animal-disclaimer {
+
+        padding: 35px 8%;
+
+        background: #FFF8E1;
+
+        text-align: center;
+
+    }
+
+
+    .animal-disclaimer i {
+
+        color: #F57C00;
+
+        font-size: 25px;
+
+        margin-bottom: 10px;
+
+    }
+
+
+    .animal-disclaimer p {
+
+        max-width: 900px;
+
+        margin: auto;
+
+        color: #666;
+
+        line-height: 1.7;
+
+    }
+
+
+    /* =====================================================
+       FOOTER
+    ===================================================== */
+
+    .animal-footer {
+
+        background: #123;
+
+        color: white;
+
+        padding: 35px 8%;
+
+        text-align: center;
+
+    }
+
+
+    .animal-footer h3 {
+
+        margin-bottom: 10px;
+
+    }
+
+
+    .animal-footer p {
+
+        color: #ccc;
+
+    }
+
+
+    /* =====================================================
+       RESPONSIVE
+    ===================================================== */
+
+    @media (max-width: 850px) {
+
+        .animal-hero {
+
+            flex-direction: column;
+
+            text-align: center;
+
+        }
+
+
+        .animal-hero-content p {
+
+            margin: auto;
+
+        }
+
+
+        .animal-action-buttons {
+
+            justify-content: center;
+
+        }
+
+
+        .animal-hero-content h1 {
+
+            font-size: 36px;
+
+        }
+
+    }
+
+</style>
+
+
+</head>
+
+<body>
+
+<div class="animal-page">
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav class="animal-navbar">
+
+    <div class="animal-logo">
+
+        <i class="fa-solid fa-paw"></i>
+
+        <h2>🩺 DermaCare AI</h2>
+
+    </div>
+
+
+    <a
+        href="{{ url_for('home') }}"
+        class="back-home"
+    >
+
+        <i class="fa-solid fa-arrow-left"></i>
+
+        Back to Home
+
+    </a>
+
+</nav>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="animal-hero">
+
+
+    <div class="animal-hero-content">
+
+        <span class="animal-badge">
+
+            <i class="fa-solid fa-paw"></i>
+
+            Animal Skin Care
+
+        </span>
+
+
+        <h1>
+
+            Caring for Your
+
+            <span>Pet's Skin</span>
+
+            with AI
+
+        </h1>
+
+
+        <p>
+
+            DermaCare AI helps pet owners identify
+            possible skin-related problems in animals
+            using AI-powered image analysis.
+
+            Upload a clear image of your pet's skin
+            condition and receive an AI-assisted
+            prediction with useful care information.
+
+        </p>
+
+
+        <div class="animal-action-buttons">
+
+            <!-- Login required before dashboard -->
+
+            <a
+                href="{{ url_for('login', type='animal') }}"
+                class="animal-primary-btn"
+            >
+
+                <i class="fa-solid fa-camera"></i>
+
+                Analyze Animal Skin
+
+            </a>
+
+
+            <a
+                href="{{ url_for('home') }}"
+                class="animal-secondary-btn"
+            >
+
+                <i class="fa-solid fa-house"></i>
+
+                Home
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         ANIMAL IMAGE
+    ================================================= -->
+
+    <div class="animal-hero-image">
+
+        <div class="animal-image-card">
+
+            <img
+                src="{{ url_for('static', filename='images/animal-care.jpg') }}"
+                alt="Animal Skin Care"
+            >
+
+
+            <div class="animal-floating-card">
+
+                <i class="fa-solid fa-shield-heart"></i>
+
+                <strong>
+
+                    AI Assisted Pet Care
+
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FEATURES
+===================================================== -->
+
+<section class="animal-features">
+
+    <h2>
+
+        Complete Animal Skin Care Support
+
+    </h2>
+
+
+    <p class="animal-subtitle">
+
+        AI-powered assistance for your pet's skin health
+
+    </p>
+
+
+    <div class="animal-feature-grid">
+
+
+        <div class="animal-feature-card">
+
+            <i class="fa-solid fa-camera"></i>
+
+            <h3>Image Analysis</h3>
+
+            <p>
+
+                Upload a clear image of your
+                pet's skin condition for AI analysis.
+
+            </p>
+
+        </div>
+
+
+        <div class="animal-feature-card">
+
+            <i class="fa-solid fa-brain"></i>
+
+            <h3>AI Detection</h3>
+
+            <p>
+
+                The AI system analyzes visual
+                patterns and provides an assisted prediction.
+
+            </p>
+
+        </div>
+
+
+        <div class="animal-feature-card">
+
+            <i class="fa-solid fa-paw"></i>
+
+            <h3>Pet Care Information</h3>
+
+            <p>
+
+                Receive general information
+                about possible skin-related conditions.
+
+            </p>
+
+        </div>
+
+
+        <div class="animal-feature-card">
+
+            <i class="fa-solid fa-file-pdf"></i>
+
+            <h3>PDF Report</h3>
+
+            <p>
+
+                Generate and download a report
+                of the AI-assisted analysis.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     HOW IT WORKS
+===================================================== -->
+
+<section class="animal-how">
+
+    <h2>
+
+        How Animal Skin Analysis Works
+
+    </h2>
+
+
+    <div class="animal-steps">
+
+
+        <div class="animal-step">
+
+            <div class="animal-step-number">
+
+                1
+
+            </div>
+
+            <h3>Upload Image</h3>
+
+            <p>
+
+                Upload a clear image
+                of your pet's skin.
+
+            </p>
+
+        </div>
+
+
+        <div class="animal-step">
+
+            <div class="animal-step-number">
+
+                2
+
+            </div>
+
+            <h3>AI Analysis</h3>
+
+            <p>
+
+                The AI model analyzes
+                the uploaded image.
+
+            </p>
+
+        </div>
+
+
+        <div class="animal-step">
+
+            <div class="animal-step-number">
+
+                3
+
+            </div>
+
+            <h3>Prediction</h3>
+
+            <p>
+
+                View the possible
+                skin condition prediction.
+
+            </p>
+
+        </div>
+
+
+        <div class="animal-step">
+
+            <div class="animal-step-number">
+
+                4
+
+            </div>
+
+            <h3>Care Guidance</h3>
+
+            <p>
+
+                Receive general care
+                information and recommendations.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     DISCLAIMER
+===================================================== -->
+
+<section class="animal-disclaimer">
+
+    <i class="fa-solid fa-triangle-exclamation"></i>
+
+    <p>
+
+        <strong>Important:</strong>
+
+        DermaCare AI is an AI-assisted educational
+        and healthcare awareness system.
+
+        It does not replace professional veterinary
+        diagnosis or treatment.
+
+        Always consult a qualified veterinarian
+        for proper examination and medical care.
+
+    </p>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="animal-footer">
+
+    <h3>
+
+        🩺 DermaCare AI
+
+    </h3>
+
+    <p>
+
+        AI Powered Animal Skin Care Assistance
+
+    </p>
+
+    <p>
+
+        © 2026 DermaCare AI | Developed by Meet Trapasiya
+
+    </p>
+
+</footer>
+
+
+</div>
+
+</body>
+
+</html>
